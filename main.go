@@ -13,8 +13,13 @@ func main() {
 		fmt.Print("Pokedex > ")
 		scanner.Scan()
 		inputString := scanner.Text()
-		cleanedText := cleanInput(inputString)
-		fmt.Printf("Your command was: %s \n", cleanedText[0])
+		command, exists := registry[inputString]
+		if exists {
+			command.callback()
+		} else {
+			fmt.Print("Unknown command \n")
+		}
+
 	}
 }
 
